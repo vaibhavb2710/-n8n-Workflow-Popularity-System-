@@ -93,13 +93,13 @@ The dataset is **programmatically generated and refreshed daily**, consisting of
 
 ### 🔹 System Architecture
 External Sources  
-      ↓  
+       ↓  
 Data Collector  
-      ↓  
+       ↓  
 Popularity Scoring Engine  
-      ↓  
+       ↓  
 SQLite Database  
-      ↓  
+       ↓  
 FastAPI APIs  
 
 ---
@@ -116,7 +116,7 @@ FastAPI APIs
 
 ### ▶️ How to Run this Project?
 - Step 1: Clone the Repository  
-git clone https://github.com/vaibhavb2710/n8n-workflow-popularity.git  
+git clone https://github.com/vaibhavb2710/-n8n-Workflow-Popularity-System-.git
 cd n8n-workflow-popularity
 
 - Step 2: Create Virtual Environment
