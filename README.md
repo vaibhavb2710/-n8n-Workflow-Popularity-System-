@@ -89,4 +89,98 @@ The dataset is **programmatically generated and refreshed daily**, consisting of
 
 ## 📈 Dashboard / Model / Output
 
-**🔹 System Architecture** textExternal Sources      ↓Data Collector      ↓Popularity Scoring Engine      ↓SQLite Database      ↓FastAPI APIs🔹 Sample API Response{  "rank": 1,  "workflow\_name": "YouTube Automation Workflow",  "popularity\_score": 94.2,  "date": "2025-12-18"}▶️ How to Run this Project?Step 1: Clone the Repositorygit clone https://github.com/your-username/n8n-workflow-popularity.gitcd n8n-workflow-popularityStep 2: Create Virtual Environmentpython -m venv venvsource venv/bin/activate   # Windows: venv\\Scripts\\activateStep 3: Install Dependenciespip install -r requirements.txtStep 4: Initialize Databasepython -m app.database.init\_dbStep 5: Run Daily Scheduler (Manual Trigger)python -m app.scheduler.cron\_jobStep 6: Start API Serveruvicorn app.main:app --reload🧪 Results & ConclusionTop n8n workflows are ranked automatically every daySystem removes the need for manual monitoringAPIs provide clean and reusable access to rankingsProject reflects real-world backend and automation skillsOverall, the system is stable, efficient, and production-ready.🔮 Future WorkAdd frontend dashboard (React / Next.js)Integrate more popularity data sourcesCloud deployment (AWS / GCP)Authentication and cachingMigrate to PostgreSQL for scalability👤 Author & ContactVaibhav🎓 IT Engineering Student💻 Backend • Automation • APIs📧 Email: your-email@example.com🔗 GitHub: https://github.com/your-username⭐ If you like this project, don’t forget to star the repository!---### ✅ Final check- ✔ Single file  - ✔ Follows your image structure  - ✔ Visually clean & professional  - ✔ Interviewer-ready  If you want, next I can:- Optimize this for \*\*resume bullets\*\*- Write \*\*GitHub repo description (2 lines)\*\*- Add \*\*Swagger API visuals section\*\*Just say 👍
+---
+
+### 🔹 System Architecture
+     text
+External Sources
+      ↓
+Data Collector
+      ↓
+Popularity Scoring Engine
+      ↓
+SQLite Database
+      ↓
+FastAPI APIs
+
+---
+
+### 🔹 Sample API Response
+{
+  "rank": 1,
+  "workflow_name": "YouTube Automation Workflow",
+  "popularity_score": 94.2,
+  "date": "2025-12-18"
+}
+
+---
+
+### ▶️ How to Run this Project?
+-Step 1: Clone the Repository
+git clone https://github.com/your-username/n8n-workflow-popularity.git
+cd n8n-workflow-popularity
+
+-Step 2: Create Virtual Environment
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+
+-Step 3: Install Dependencies
+pip install -r requirements.txt
+
+-Step 4: Initialize Database
+python -m app.database.init_db
+
+-Step 5: Run Daily Scheduler (Manual Trigger)
+python -m app.scheduler.cron_job
+
+-Step 6: Start API Server
+uvicorn app.main:app --reload
+
+---
+
+### 🧪 Results & Conclusion
+
+-Top n8n workflows are ranked automatically every day
+-System removes the need for manual monitoring
+-APIs provide clean and reusable access to rankings
+-Project reflects real-world backend and automation skills
+-Overall, the system is stable, efficient, and production-ready.
+
+---
+
+### 🔮 Future Work
+
+-Add frontend dashboard (React / Next.js)
+-Integrate more popularity data sources
+-Cloud deployment (AWS / GCP)
+-Authentication and caching
+-Migrate to PostgreSQL for scalability
+
+---
+
+### 👤 Author & Contact
+
+    Vaibhav
+    🎓 IT Engineering Student
+    💻 Backend • Automation • APIs
+    📧 Email: vaibhavbedre2005@gmail.com
+---
+### 🔗 GitHub: https://github.com/your-username
+---
+
+### ⭐ If you like this project, don’t forget to star the repository!
+
+---
+
+### ✅ Final check
+- ✔ Single file  
+- ✔ Follows your image structure  
+- ✔ Visually clean & professional  
+- ✔ Interviewer-ready  
+
+If you want, next I can:
+- Optimize this for **resume bullets**
+- Write **GitHub repo description (2 lines)**
+- Add **Swagger API visuals section**
+
+Just say 👍
