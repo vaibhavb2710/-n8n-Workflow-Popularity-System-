@@ -92,15 +92,14 @@ The dataset is **programmatically generated and refreshed daily**, consisting of
 ---
 
 ### 🔹 System Architecture
-     text
 External Sources
-      ↓
+      ->
 Data Collector
-      ↓
+      ->
 Popularity Scoring Engine
-      ↓
+      ->
 SQLite Database
-      ↓
+      ->
 FastAPI APIs
 
 ---
@@ -116,56 +115,56 @@ FastAPI APIs
 ---
 
 ### ▶️ How to Run this Project?
--Step 1: Clone the Repository
+- Step 1: Clone the Repository
 git clone https://github.com/your-username/n8n-workflow-popularity.git
 cd n8n-workflow-popularity
 
--Step 2: Create Virtual Environment
+- Step 2: Create Virtual Environment
 python -m venv venv
 source venv/bin/activate   # Windows: venv\Scripts\activate
 
--Step 3: Install Dependencies
+- Step 3: Install Dependencies
 pip install -r requirements.txt
 
--Step 4: Initialize Database
+- Step 4: Initialize Database
 python -m app.database.init_db
 
--Step 5: Run Daily Scheduler (Manual Trigger)
+- Step 5: Run Daily Scheduler (Manual Trigger)
 python -m app.scheduler.cron_job
 
--Step 6: Start API Server
+- Step 6: Start API Server
 uvicorn app.main:app --reload
 
 ---
 
 ### 🧪 Results & Conclusion
 
--Top n8n workflows are ranked automatically every day
--System removes the need for manual monitoring
--APIs provide clean and reusable access to rankings
--Project reflects real-world backend and automation skills
--Overall, the system is stable, efficient, and production-ready.
+- Top n8n workflows are ranked automatically every day
+- System removes the need for manual monitoring
+- APIs provide clean and reusable access to rankings
+- Project reflects real-world backend and automation skills
+- Overall, the system is stable, efficient, and production-ready.
 
 ---
 
 ### 🔮 Future Work
 
--Add frontend dashboard (React / Next.js)
--Integrate more popularity data sources
--Cloud deployment (AWS / GCP)
--Authentication and caching
--Migrate to PostgreSQL for scalability
+- Add frontend dashboard (React / Next.js)
+- Integrate more popularity data sources
+- Cloud deployment (AWS / GCP)
+- Authentication and caching
+- Migrate to PostgreSQL for scalability
 
 ---
 
 ### 👤 Author & Contact
 
-    Vaibhav
+     Vaibhav Bedre
     🎓 IT Engineering Student
     💻 Backend • Automation • APIs
     📧 Email: vaibhavbedre2005@gmail.com
 ---
-### 🔗 GitHub: https://github.com/your-username
+### 🔗 GitHub: https://github.com/vaibhavb2710
 ---
 
 ### ⭐ If you like this project, don’t forget to star the repository!
