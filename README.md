@@ -114,11 +114,7 @@ The system collects popularity evidence from the following platforms:
 
 Each workflow is assigned a popularity score using the following weighted formula: 
 
-score =  
-(views × 0.4)  
-+(likes × 0.3)  
-+(comments × 0.2)  
-+(like_to_view_ratio × 100 × 0.1)  
+score =  (views × 0.4) + (likes × 0.3) + (comments × 0.2) + (like_to_view_ratio × 100 × 0.1)    
 
 This scoring approach balances reach, engagement, and interaction quality.
 
