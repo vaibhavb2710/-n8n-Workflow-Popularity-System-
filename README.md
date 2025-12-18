@@ -183,9 +183,10 @@ FastAPI APIs
 git clone https://github.com/vaibhavb2710/-n8n-Workflow-Popularity-System-.git  
 cd n8n-workflow-popularity
 
-- Step 2: Create Virtual Environment
+- Step 2: Create Virtual Environment  
 python -m venv venv  
-source venv/bin/activate     
+source venv/bin/activate  
+  
 # Windows: venv\Scripts\activate
 
 - Step 3: Install Dependencies  
