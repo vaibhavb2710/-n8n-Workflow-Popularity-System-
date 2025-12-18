@@ -24,6 +24,7 @@ Each workflow is assigned a popularity score using a weighted formula:
     score =(views × 0.4) + (likes × 0.3) + (comments × 0.2) + (like_to_view_ratio × 100 × 0.1)
 
 🗂️ Project Structure:
+'''
 n8n-workflow-popularity/
 │
 ├── app/
@@ -54,6 +55,7 @@ n8n-workflow-popularity/
 ├── .env                           # API keys (need to be provide)
 ├── workflows.db                   # SQLite database
 └── README.md
+'''
 
 🔑 API Keys & Environment Setup:
 Required: YouTube Data API v3 key
