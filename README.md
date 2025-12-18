@@ -72,49 +72,43 @@ n8n-workflow-popularity/
 ├── workflows.db  
 └── README.md  
 
+---
+
+## Data Sources
+
+The system collects popularity evidence from the following platforms:
+
+### YouTube
+- View count
+- Like count
+- Comment count
+- Engagement ratios:
+  - like_to_view_ratio
+  - comment_to_view_ratio
+
+### n8n Community Forum (Discourse)
+- Number of replies
+- Number of likes
+- Number of contributors
+- Thread views
+
+### Google Trends
+- Relative search interest
+- Trending demand (opportunistic and rate-limit safe)
 
 ---
 
-## 🧠 Data Sources & Popularity Signals
+## Popularity Scoring Logic
 
-### 📺 YouTube (Workflow Videos)
-**Signals used:**
-- Views
-- Likes
-- Comments
-- Engagement ratios
+Each workflow is assigned a popularity score using the following weighted formula: 
 
-```
-like_to_view_ratio = likes / views
-comment_to_view_ratio = comments / views
-```
-### 💬 n8n Community Forum (Discourse)
+score =  
+(views × 0.4)  
++ (likes × 0.3)  
++ (comments × 0.2)  
++ (like_to_view_ratio × 100 × 0.1)  
 
-**Signals used:**
-- Replies
-- Likes
-- Unique contributors
-- Thread views
-
-### 🔎 Google Search (Trends)
-
-**Signals used:**
-- Relative search interest
-- Keyword trend movement
-- Country-specific demand (US + India)
-
-### 🌍 Country Segmentation
-
-**Each workflow is segmented by:**
-- 🇺🇸 United States
-- 🇮🇳 India  
-This allows geo-specific popularity analysis.
-
-## 📊 Dataset
-The dataset is **programmatically generated and refreshed daily**, consisting of:
-- Workflow metadata (name, category)
-- Popularity indicators (trend and activity signals)
-- Date-wise popularity snapshots
+This scoring approach balances reach, engagement, and interaction quality.
 
 ---
 
