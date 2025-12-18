@@ -159,15 +159,47 @@ The system follows a structured data pipeline approach to identify and rank popu
 
 ## 🏗️ System Architecture
 
-The system is designed using a modular and scalable backend architecture:
-
-- **Data Collectors** fetch popularity signals from external platforms.
-- **Service Layer** processes and normalizes raw data and computes popularity scores.
-- **Database Layer** stores workflow metadata and popularity metrics.
-- **Scheduler** triggers periodic data ingestion without manual intervention.
-- **API Layer** exposes workflow data and rankings through REST endpoints.
-
-This separation of concerns ensures maintainability, extensibility, and production readiness.
+┌──────────────┐
+│   CRON JOB   │
+│ (Daily 12AM) │
+└──────┬───────┘
+       │
+       ▼
+┌─────────────────────┐
+│   Data Collectors   │
+│─────────────────────│
+│ • YouTube API       │
+│ • n8n Forum API     │
+│ • Google Trends     │
+└──────┬──────────────┘
+       │
+       ▼
+┌─────────────────────┐
+│  Processing Layer   │
+│ • Normalization     │
+│ • Ratio Calculation │
+│ • Ranking Logic     │
+└──────┬──────────────┘
+       │
+       ▼
+┌─────────────────────┐
+│   Database (SQLite) │
+│ • Workflow Data     │
+│ • Popularity Metrics│
+└──────┬──────────────┘
+       │
+       ▼
+┌─────────────────────┐
+│   REST API (FastAPI)│
+│ • /workflows        │
+│ • /workflows/top    │
+└──────┬──────────────┘
+       │
+       ▼
+┌─────────────────────┐
+│   Client / Swagger  │
+│ • Browser / Tools   │
+└─────────────────────┘
 
 ---
 
