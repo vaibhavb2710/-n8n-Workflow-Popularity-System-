@@ -47,6 +47,69 @@ Manual tracking is inefficient, error-prone, and not scalable.
 
 ---
 
+## Project Structure
+
+n8n-workflow-popularity/  
+├── app/  
+│   ├── api/  
+│   │   └── routes.py  
+│   ├── collectors/  
+│   │   ├── youtube.py  
+│   │   ├── forum.py  
+│   │   └── google_trends.py  
+│   ├── services/  
+│   │   └── popularity.py  
+│   ├── models/  
+│   │   └── workflow.py  
+│   ├── database/  
+│   │   ├── db.py  
+│   │   └── init_db.py  
+│   ├── scheduler/  
+│   │   └── cron_job.py  
+│   └── main.py  
+├── requirements.txt  
+├── .env  
+├── workflows.db  
+└── README.md  
+
+
+---
+
+## 🧠 Data Sources & Popularity Signals
+
+### 📺 YouTube (Workflow Videos)
+**Signals used:**
+- Views
+- Likes
+- Comments
+- Engagement ratios
+
+```
+like_to_view_ratio = likes / views
+comment_to_view_ratio = comments / views
+```
+### 💬 n8n Community Forum (Discourse)
+
+**Signals used:**
+- Replies
+- Likes
+- Unique contributors
+- Thread views
+
+### 🔎 Google Search (Trends)
+
+**Signals used:**
+- Relative search interest
+- Keyword trend movement
+- Country-specific demand (US + India)
+
+### 🌍 Country Segmentation
+
+**Each workflow is segmented by:**
+- 🇺🇸 United States
+- 🇮🇳 India  
+This allows geo-specific popularity analysis.
+
 ## 📊 Dataset
 The dataset is **programmatically generated and refreshed daily**, consisting of:
 - Workflow metadata (name, category)
@@ -91,8 +154,9 @@ The dataset is **programmatically generated and refreshed daily**, consisting of
 
 ---
 
-### 🔹 System Architecture
-External Sources  
+## 🔹 System Architecture
+External Platforms  
+(YouTube / Forum / Google)  
            ↓  
 Data Collector  
            ↓  
@@ -104,7 +168,7 @@ FastAPI APIs
 
 ---
 
-### 🔹 Sample API Response
+## 🔹 Sample API Response
 {  
   "rank": 1,  
   "workflow_name": "YouTube Automation Workflow",  
@@ -114,7 +178,7 @@ FastAPI APIs
 
 ---
 
-### ▶️ How to Run this Project?
+## ▶️ How to Run this Project?
 - Step 1: Clone the Repository  
 git clone https://github.com/vaibhavb2710/-n8n-Workflow-Popularity-System-.git  
 cd n8n-workflow-popularity
@@ -138,7 +202,7 @@ uvicorn app.main:app --reload
 
 ---
 
-### 🧪 Results & Conclusion
+## 🧪 Results & Conclusion
 
 - Top n8n workflows are ranked automatically every day
 - System removes the need for manual monitoring
@@ -148,7 +212,7 @@ uvicorn app.main:app --reload
 
 ---
 
-### 🔮 Future Work
+## 🔮 Future Work
 
 - Add frontend dashboard (React / Next.js)
 - Integrate more popularity data sources
@@ -158,7 +222,7 @@ uvicorn app.main:app --reload
 
 ---
 
-### 👤 Author & Contact
+## 👤 Author & Contact
 
      Vaibhav Bedre
     🎓 IT Engineering Student
