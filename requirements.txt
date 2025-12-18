@@ -5,3 +5,5 @@ sqlalchemy
 python-dotenv
 pytrends
 pydantic
+pandas
+numpy
