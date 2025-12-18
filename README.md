@@ -1,126 +1,187 @@
-n8n Workflow Popularity System
+# n8n Workflow Popularity System
 
-🔍 Overview
-The n8n Workflow Popularity System is a backend service that identifies and ranks the most popular n8n workflows across multiple platforms using real engagement and demand signals.
+## Overview
 
-The system automatically collects data from:
-YouTube (workflow videos & engagement)
-n8n Community Forum (user discussions & activity)
-Google Trends (search interest – opportunistic)
+The n8n Workflow Popularity System is a production-ready backend service that identifies and ranks the most popular n8n workflows using real engagement and demand signals collected from multiple platforms. The system automatically ingests data, stores normalized metrics in a database, computes popularity scores, and exposes the results through a REST API that is ready for deployment and automation.
 
-It stores the data in a database, computes popularity scores, and exposes the results through a REST API.
-The system is automation-ready and designed to be production deployable.
+---
 
-🎯 Key Features
-📊 Real popularity metrics (views, likes, comments, engagement ratios)
-🌍 Country segmentation (US, extensible to India)
-🔁 Automated data ingestion (cron-ready)
-🧮 Popularity ranking logic
-🚀 REST API with filtering & ranking
-📄 Swagger documentation for easy testing
+## Data Sources
 
-🧠 Popularity Logic
-Each workflow is assigned a popularity score using a weighted formula:
-    score =(views × 0.4) + (likes × 0.3) + (comments × 0.2) + (like_to_view_ratio × 100 × 0.1)
+The system collects popularity evidence from the following platforms:
 
-🗂️ Project Structure:
-'''
-n8n-workflow-popularity/
-│
-├── app/
-│   ├── api/
-│   │   └── routes.py              # API endpoints
-│   │
-│   ├── collectors/
-│   │   ├── youtube.py             # YouTube Data API collector
-│   │   ├── forum.py               # n8n Forum (Discourse) collector
-│   │   └── google_trends.py       # Google Trends collector (safe-handled)
-│   │
-│   ├── services/
-│   │   └── popularity.py          # Score & ratio calculations
-│   │
-│   ├── models/
-│   │   └── workflow.py            # Database model
-│   │
-│   ├── database/
-│   │   ├── db.py                  # DB connection
-│   │   └── init_db.py             # DB initialization
-│   │
-│   ├── scheduler/
-│   │   └── cron_job.py             # Automated data ingestion
-│   │
-│   └── main.py                    # FastAPI app entry point
-│
-├── requirements.txt
-├── .env                           # API keys (need to be provide)
-├── workflows.db                   # SQLite database
-└── README.md
-'''
+### YouTube
+- View count
+- Like count
+- Comment count
+- Engagement ratios:
+  - like_to_view_ratio
+  - comment_to_view_ratio
 
-🔑 API Keys & Environment Setup:
-Required: YouTube Data API v3 key
+### n8n Community Forum (Discourse)
+- Number of replies
+- Number of likes
+- Number of contributors
+- Thread views
 
-🛠️ Installation & Setup:
+### Google Trends
+- Relative search interest
+- Trending demand (opportunistic and rate-limit safe)
 
-1️⃣ Create and activate virtual environment (Python 3.11)
-    py -3.11 -m venv venv
-    venv\Scripts\activate
+---
 
-2️⃣ Install dependencies
-    pip install --upgrade pip
-    pip install -r requirements.txt
+## Popularity Scoring Logic
 
-3️⃣ Initialize database
-    python -m app.database.init_db
+Each workflow is assigned a popularity score using the following weighted formula:
 
-🔁 Automated Data Collection (Cron-Ready)
-To run data ingestion manually:
-    python -m app.scheduler.cron_job
+score =  
+(views × 0.4)  
++ (likes × 0.3)  
++ (comments × 0.2)  
++ (like_to_view_ratio × 100 × 0.1)
 
-✅ This is the official cron command (daily at 12:00 AM)
-    0 0 * * * python -m app.scheduler.cron_job
-👉 This means:
-0 0 → 12:00 AM
-* * * → every day
-Runs your data ingestion automatically
+This scoring approach balances reach, engagement, and interaction quality.
 
-🚀 Running the API Server
-    uvicorn app.main:app --reload
+---
 
-Server will start at: http://127.0.0.1:8000
+## Features
 
-📡 API Endpoints
+- Automated data ingestion (cron-ready)
+- Real popularity metrics with clear evidence
+- Country segmentation (US, extensible to India)
+- Ranking of top workflows
+- REST API with filtering
+- Swagger API documentation
+- Production-ready backend architecture
 
-🔹 Health Check
-    GET /
+---
 
-🔹 Get all workflows
-    GET /workflows
+## Project Structure
 
-🔹 Filter workflows
-    GET /workflows?platform=YouTube
-    GET /workflows?country=US
+n8n-workflow-popularity/  
+├── app/  
+│   ├── api/  
+│   │   └── routes.py  
+│   ├── collectors/  
+│   │   ├── youtube.py  
+│   │   ├── forum.py  
+│   │   └── google_trends.py  
+│   ├── services/  
+│   │   └── popularity.py  
+│   ├── models/  
+│   │   └── workflow.py  
+│   ├── database/  
+│   │   ├── db.py  
+│   │   └── init_db.py  
+│   ├── scheduler/  
+│   │   └── cron_job.py  
+│   └── main.py  
+├── requirements.txt  
+├── .env  
+├── workflows.db  
+└── README.md  
 
-🔹 Top-ranked workflows
-    GET /workflows/top
-    GET /workflows/top?platform=YouTube&limit=5
+---
 
-📘 API Documentation (Swagger)
-Interactive API docs available at: http://127.0.0.1:8000/docs
+## Environment Setup
 
-✅ Evaluation Readiness
+### Requirements
+- Python 3.11
+- YouTube Data API v3 key
+
+Create a .env file in the project root:
+
+YOUTUBE_API_KEY=YOUR_YOUTUBE_API_KEY
+
+API keys are stored securely using environment variables and are never hardcoded.
+
+---
+
+## Installation
+
+Create and activate a virtual environment:
+
+py -3.11 -m venv venv  
+venv\Scripts\activate  
+
+Install dependencies:
+
+pip install --upgrade pip  
+pip install -r requirements.txt  
+
+Initialize the database:
+
+python -m app.database.init_db  
+
+---
+
+## Automated Data Collection
+
+The system is cron-ready and supports scheduled execution.
+
+Run data ingestion manually:
+
+python -m app.scheduler.cron_job  
+
+Cron configuration (runs daily at 12:00 AM):
+
+0 0 * * * python -m app.scheduler.cron_job  
+
+The system is designed to gracefully handle third-party API rate limits without interrupting execution.
+
+---
+
+## Running the API Server
+
+Start the FastAPI server:
+
+uvicorn app.main:app --reload  
+
+Server will be available at:
+
+http://127.0.0.1:8000  
+
+---
+
+## API Endpoints
+
+Health Check  
+GET /
+
+Get All Workflows  
+GET /workflows  
+
+Filter Workflows  
+GET /workflows?platform=YouTube  
+GET /workflows?country=US  
+
+Top Ranked Workflows  
+GET /workflows/top  
+GET /workflows/top?platform=YouTube&limit=5  
+
+---
+
+## API Documentation
+
+Interactive Swagger documentation is available at:
+
+http://127.0.0.1:8000/docs  
+
+---
+
+## Evaluation Readiness
 
 This project satisfies all assignment requirements:
-✔ Real popularity evidence
-✔ Production-ready API
-✔ Automated data ingestion
-✔ Ranking logic
-✔ Clean architecture & documentation
+- Real popularity evidence
+- Automated data ingestion
+- Production-ready REST API
+- Ranking logic
+- Clean and scalable architecture
+- Clear documentation
 
-🧠 Summary:
-This system demonstrates how workflow popularity can be measured using real-world engagement signals, automated pipelines, and scalable backend design.
-It is suitable for deployment, extension, and real production usage.
+---
 
-🙌 Author
-Vaibhav Bedre
+## Author
+
+Vaibhav  
 Backend & Systems Engineering
