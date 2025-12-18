@@ -46,20 +46,20 @@ def get_top_workflows(
 
 
 
-# @router.get("/workflows")
-# def get_workflows(
-#     platform: str = Query(None),
-#     country: str = Query(None)
-# ):
-#     db = SessionLocal()
-#     query = db.query(Workflow)
+@router.get("/workflows")
+def get_workflows(
+    platform: str = Query(None),
+    country: str = Query(None)
+):
+    db = SessionLocal()
+    query = db.query(Workflow)
 
-#     if platform:
-#         query = query.filter(Workflow.platform == platform)
+    if platform:
+        query = query.filter(Workflow.platform == platform)
 
-#     if country:
-#         query = query.filter(Workflow.country == country)
+    if country:
+        query = query.filter(Workflow.country == country)
 
-#     results = query.all()
-#     db.close()
-#     return results
+    results = query.all()
+    db.close()
+    return results
